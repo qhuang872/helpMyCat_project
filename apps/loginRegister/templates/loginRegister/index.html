@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>helpMyCat</title>
+</head>
+<body>
+	<form action="{% url 'loginRegister:register' %}" method="post">
+		{%csrf_token%}
+		{{registerForm.as_p}}
+		<input type="submit" value="register">
+		<a href="{% url 'loginRegister:login'%}">Already registered? Login here.</a>
+	</form>
+</body>
+</html>
