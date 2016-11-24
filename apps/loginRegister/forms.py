@@ -10,7 +10,6 @@ class RegisterForm(ModelForm):
     def clean(self):
         password = self.cleaned_data['password']
         confirm = self.cleaned_data['confirmPassword']
-        print(password,confirm)
         if password != confirm:
             raise ValidationError("password and confirm password do not match")
         return self.cleaned_data

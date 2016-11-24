@@ -14,3 +14,4 @@ class User(models.Model):
     email = models.EmailField(max_length=255)
     password = models.CharField(max_length=255,validators=[validatePassword])
 
+

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Help Cats</title>
+	{% load staticfiles %}
+	<link rel="stylesheet" href="{%static 'forum/stylesheets/bootstrap.min.css'%}" media="all">
+	<link rel="stylesheet" href="{% static 'forum/stylesheets/style.css'%}" media="all">
+</head>
+<body>
+	<div class="container-fluid">
+		<header>
+			<img src="{% static 'forum/pictures/catLogo.png'%}" alt="cat logo">
+			<h2>Help My Cats</h2>
+			<a href="{% url 'forum:logout' %}">Log out</a>
+		</header>
+		<table class="table table-hover">
+			<thead>
+				<tr class="info">
+					<th>Forum</th>
+					<th>Last Post</th>
+					<th>Threads</th>
+					<th>Posts</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for forum in all %}
+				<tr class="active">
+					<td><a href="{% url 'forum:forum' forumName=forum.forum%}">{{forum.forum}}</a><br>
+						{{forum.description}}
+					</td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

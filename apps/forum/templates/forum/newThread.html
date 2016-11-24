@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Help Cats</title>
+	{% load staticfiles %}
+	<link rel="stylesheet" href="{% static 'forum/stylesheets/bootstraps.min.css'%}" media="all">
+</head>
+<body>
+	<header>
+		<img src="{% static 'forum/pictures/catLogo.png'%}" alt="cat logo">
+		<h2>Help My Cats</h2>
+		<a href="{% url 'forum:logout' %}">Log out</a>
+	</header>
+
+</body>
+</html>

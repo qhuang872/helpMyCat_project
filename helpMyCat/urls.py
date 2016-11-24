@@ -18,4 +18,5 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^',include('apps.loginRegister.urls',namespace='loginRegister')),
+    url(r'^forum/',include('apps.forum.urls',namespace='forum')),
 ]

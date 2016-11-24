@@ -1,0 +1,23 @@
+*{
+	padding:0px;
+	margin:0px;
+}
+header{
+	width:100%;
+	height:auto;
+	overflow:hidden;
+}
+	header img{
+		margin-left:60px;
+	}
+	header>h2{
+	}
+.table-hover{
+	width:90%;
+	position:absolute;
+	margin-left:5%;
+}
+.table-hover td{
+	width:25%;
+}
+

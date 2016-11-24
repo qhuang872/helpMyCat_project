@@ -18,8 +18,8 @@ def register(request):
                                           email=form.cleaned_data["email"],
                                           password=form.cleaned_data["password"])
             newUser.save()
-            users=User.objects.all()
-            return render(request,"loginRegister/success.html")
+            request.session["user"]=newUser.username
+            return redirect(reverse("forum:index"))
         else:
             return render(request,"loginRegister/index.html",context)
 
@@ -33,6 +33,7 @@ def authenticate(request):
         form = LoginForm(request.POST)
         context = {"loginForm":form}
         if form.is_valid():
-            return render(request,"loginRegister/success.html")
+            request.session["user"]=form.cleaned_data["username"]
+            return redirect(reverse("forum:index"))
         else:
             return render(request,"loginRegister/login.html",context)
