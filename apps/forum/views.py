@@ -9,8 +9,8 @@ def index(request):
     return render(request,"forum/index.html",context)
 
 def logout(request):
-    request.session.remove("user")
-    return redirect(reverse("index:index"))
+    request.session.pop("user")
+    return redirect(reverse("loginRegister:index"))
 
 def forum(request,forumName):
     context = {"forum":forumName}
