@@ -27,10 +27,12 @@
 		<button class="btn btn-primary">Post</button>
 		<form action="{%url 'forum:newPost'%}" method="post">
 			{%csrf_token%}
-			<input id="post" type="text" name="post" placeholder="Your post">
+			<textarea id="post" type="text" name="post" placeholder="Your post"></textarea>
+
 			<input type="hidden" name="currentThread" value="{{currentThread.thread}}">
 			<input type="submit" value="Post it" class="btn btn-info">
 		</form>
+		<a href="{%url 'forum:forum' forumName=request.session.forum%}">back to forum page</a>
 		{% if allPost %}
 		{% for post in allPost %}
 		<div class="post">
