@@ -12,3 +12,6 @@ p:first-child{
 form{
 	display:none;
 }
+span{
+	color:navy;
+}

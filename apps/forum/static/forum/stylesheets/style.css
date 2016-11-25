@@ -10,9 +10,9 @@ header{
 	header img{
 		margin-left:60px;
 	}
-	header>h2{
-	}
 .table-hover td{
 	width:25%;
 }
-
+form{
+	display:none;
+}

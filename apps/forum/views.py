@@ -57,3 +57,12 @@ def newPost(request):
         thread.post_set.add(newPost)
         thread.save()
         return redirect(reverse("forum:showThread",kwargs={"thread":currentThread}))
+
+def newForum(request):
+    if request.method == "POST":
+        forumTitle = request.POST["forumTitle"]
+        description = request.POST["description"]
+        newForum = Forum.objects.create(forum=forumTitle,description=description)
+        newForum.save()
+        return redirect(reverse("forum:index"))
+

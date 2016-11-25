@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Help Cats</title>
+	<title>Meow's in Need</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	{%load staticfiles%}
 	<link rel="stylesheet" href="{%static 'forum/stylesheets/bootstrap.min.css'%}" media="all">
@@ -37,7 +37,7 @@
 		{% for post in allPost %}
 		<div class="post">
 			<p>{{post.created_at}} {{loop.index}}</p>
-			<h4>{{post.writer.username}} said:</h4>
+			<h4><span>{{post.writer.username}}</span> said:</h4>
 			<p class="content">{{post.post}}</p>
 		</div><br>
 		{% endfor %}

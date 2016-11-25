@@ -2,10 +2,19 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Help Cats</title>
+	<title>Meow's in Need</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	{% load staticfiles %}
 	<link rel="stylesheet" href="{%static 'forum/stylesheets/bootstrap.min.css'%}" media="all">
 	<link rel="stylesheet" href="{% static 'forum/stylesheets/style.css'%}" media="all">
+	<script>
+		$(document).ready(function(){
+			var form = $("form");
+			$("button").click(function(){
+				form.show();
+			})
+		})
+	</script>
 </head>
 <body>
 	<div class="container-fluid">
@@ -14,6 +23,13 @@
 			<h2>Help My Cats</h2>
 			<a href="{% url 'forum:logout' %}">Log out</a>
 		</header>
+		<button class="btn btn-success">New Forum</button>
+		<form action="{% url 'forum:newForum'%}" method="post">
+			{%csrf_token%}
+			<input id="forumTitle" type="text" name="forumTitle" placeholder="Enter forum name here">
+			<textarea id="description" name="description" cols="30" rows="10" placeholder="Enter description here"></textarea>
+			<input type="submit" value="create forum" class="btn btn-info">
+		</form>
 		<table class="table table-hover">
 			<thead>
 				<tr class="info">
@@ -30,7 +46,7 @@
 						{{forum.description}}
 					</td>
 					<td></td>
-					<td></td>
+					<td>{{forum.thread_set.all|length}}</td>
 					<td></td>
 				</tr>
 				{% endfor %}
