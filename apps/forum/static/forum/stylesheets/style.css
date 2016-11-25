@@ -12,11 +12,6 @@ header{
 	}
 	header>h2{
 	}
-.table-hover{
-	width:90%;
-	position:absolute;
-	margin-left:5%;
-}
 .table-hover td{
 	width:25%;
 }

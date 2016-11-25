@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.core.urlresolvers import reverse
 from .models import Forum, Thread, Post
-
+from ..loginRegister.models import User
 # Create your views here.
 def index(request):
     allForum = Forum.objects.all()
@@ -13,9 +13,47 @@ def logout(request):
     return redirect(reverse("loginRegister:index"))
 
 def forum(request,forumName):
-    context = {"forum":forumName}
+    currentForum = Forum.objects.get(forum=forumName)
+    allThread = currentForum.thread_set.all()
+    context = {"allThread":allThread}
+    request.session["forum"] = forumName;
     return render(request,"forum/forum.html",context)
 
-def createThread(request):
-    return render(request,"forum/newThread.html")
+def newThread(request):
+    currentForum = request.session["forum"]
+    context = {"forum":currentForum}
+    return render(request,"forum/newThread.html",context)
 
+def createThread(request):
+    if request.method=="POST":
+        threadTitle = request.POST["thread"]
+        creator = User.objects.get(username=request.session["user"])
+        currentForum = Forum.objects.get(forum=request.session["forum"])
+        newThread = Thread.objects.create(thread=threadTitle,forum=currentForum,creator=creator)
+        newThread.save();
+        currentForum.thread_set.add(newThread)
+        currentForum.save()
+        optionalPost = request.POST["post"]
+        if optionalPost != "":
+            newPost = Post.objects.create(post=optionalPost,thread=newThread,writer=creator)
+            newThread.post_set.add(newPost)
+            newThread.save()
+        return redirect(reverse("forum:forum",kwargs={"forumName":request.session["forum"]})) 
+            
+def showThread(request,thread):
+    thread = Thread.objects.get(thread=thread)
+    allPost = thread.post_set.all()
+    context = {"allPost":allPost,"currentThread":thread}
+    return render(request,"forum/showThread.html",context)
+
+def newPost(request):
+    if request.method == "POST":
+        post = request.POST["post"]
+        writer = User.objects.get(username=request.session["user"])
+        currentThread = request.POST["currentThread"]
+        thread = Thread.objects.get(thread=currentThread)
+        newPost = Post.objects.create(post=post,thread=thread,writer=writer)
+        newPost.save()
+        thread.post_set.add(newPost)
+        thread.save()
+        return redirect(reverse("forum:showThread",kwargs={"thread":currentThread}))

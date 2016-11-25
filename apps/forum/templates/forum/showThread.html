@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Help Cats</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	{%load staticfiles%}
+	<link rel="stylesheet" href="{%static 'forum/stylesheets/bootstrap.min.css'%}" media="all">
+	<link rel="stylesheet" href="{%static 'forum/stylesheets/style2.css'%}" media="all">
+	<script type="text/javascript">
+		$(document).ready(function(){
+			var form = $("form");
+			$("button").click(function(){
+				form.show();
+			})
+		})
+	</script>
+</head>
+<body>
+	<div class="container-fluid">
+		<header>
+			<img src="{% static 'forum/pictures/catLogo.png'%}" alt="cat logo">
+			<h2>Help My Cats</h2>
+			<a href="{% url 'forum:logout' %}">Log out</a>
+		</header>
+		<h3>{{currentThread.thread}}</h3>
+		<button class="btn btn-primary">Post</button>
+		<form action="{%url 'forum:newPost'%}" method="post">
+			{%csrf_token%}
+			<input id="post" type="text" name="post" placeholder="Your post">
+			<input type="hidden" name="currentThread" value="{{currentThread.thread}}">
+			<input type="submit" value="Post it" class="btn btn-info">
+		</form>
+		{% if allPost %}
+		{% for post in allPost %}
+		<div class="post">
+			<p>{{post.created_at}} {{loop.index}}</p>
+			<h4>{{post.writer.username}} said:</h4>
+			<p class="content">{{post.post}}</p>
+		</div><br>
+		{% endfor %}
+		{% endif %}
+	</div>
+</body>
+</html>

@@ -1,0 +1,14 @@
+.post{
+	border: 1px solid grey;	
+	
+}
+p:first-child{
+	background-color:#C3BBB0;
+	color:white;
+}
+.content{
+	font-family:Arial;
+}
+form{
+	display:none;
+}

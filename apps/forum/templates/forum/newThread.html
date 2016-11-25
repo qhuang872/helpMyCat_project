@@ -4,7 +4,8 @@
 	<meta charset="UTF-8">
 	<title>Help Cats</title>
 	{% load staticfiles %}
-	<link rel="stylesheet" href="{% static 'forum/stylesheets/bootstraps.min.css'%}" media="all">
+	<link rel="stylesheet" href="{% static 'forum/stylesheets/bootstrap.min.css'%}" media="all">
+	<link rel="stylesheet" href="{%static 'forum/stylesheets/threadstyle.css'%}" media="all">
 </head>
 <body>
 	<header>
@@ -12,6 +13,15 @@
 		<h2>Help My Cats</h2>
 		<a href="{% url 'forum:logout' %}">Log out</a>
 	</header>
-
+	<div id="form">
+	<p>start a new thread for <strong>{{forum}}</strong> forum</p>
+	<form class="form-horizontal" action="{% url 'forum:createThread'%}" method="post">
+		{%csrf_token%}
+		<input id="threadTitle" type="text" name="thread" placeholder="Enter thread title here">
+		<textarea id="post" name="post" cols="30" rows="4" placeholder="Enter the first post for this thread(optional)"></textarea><br>
+		<input type="submit" value="Submit" class="btn btn-primary">
+		
+	</form>
+	</div>
 </body>
 </html>
