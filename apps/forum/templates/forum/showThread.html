@@ -36,7 +36,7 @@
 		{% if allPost %}
 		{% for post in allPost %}
 		<div class="post">
-			<p>{{post.created_at}} {{loop.index}}</p>
+			<p>{{post.created_at}} <span id="counter">post #{{forloop.counter}}</span></p>
 			<h4><span>{{post.writer.username}}</span> said:</h4>
 			<p class="content">{{post.post}}</p>
 		</div><br>

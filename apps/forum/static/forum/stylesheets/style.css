@@ -2,17 +2,44 @@
 	padding:0px;
 	margin:0px;
 }
+body{
+	width:80%;
+	margin:0px auto;
+}
 header{
 	width:100%;
 	height:auto;
 	overflow:hidden;
 }
-	header img{
-		margin-left:60px;
+	header img, header h3, header a{
+		display:inline-block;
+		vertical-align: top;
 	}
-.table-hover td{
-	width:25%;
+	header h3,header a{
+		margin-top:90px;
+	}
+	#meow{
+		color:PeachPuff;
+	}
+	#inNeed{
+		color:PaleTurquoise;
+	}
+	header a{
+		margin-left:600px;
+	}
+.table-hover{
+	margin-top:20px;
 }
 form{
 	display:none;
+}
+#forumTitle{
+	width:280px;
+}
+input,textarea{
+	display:inline-block;
+	vertical-align:top;
+}
+.btn-info{
+	margin-top:20px;
 }

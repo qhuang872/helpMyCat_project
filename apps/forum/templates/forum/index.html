@@ -11,7 +11,7 @@
 		$(document).ready(function(){
 			var form = $("form");
 			$("button").click(function(){
-				form.show();
+				form.toggle();
 			})
 		})
 	</script>
@@ -20,14 +20,15 @@
 	<div class="container-fluid">
 		<header>
 			<img src="{% static 'forum/pictures/catLogo.png'%}" alt="cat logo">
-			<h2>Help My Cats</h2>
+			<h3><span id="meow">Meows</span><span id="inNeed">inNeed</span></h3>
+
 			<a href="{% url 'forum:logout' %}">Log out</a>
 		</header>
-		<button class="btn btn-success">New Forum</button>
+		<button class="btn btn-success">New Forum/Hide</button>
 		<form action="{% url 'forum:newForum'%}" method="post">
 			{%csrf_token%}
 			<input id="forumTitle" type="text" name="forumTitle" placeholder="Enter forum name here">
-			<textarea id="description" name="description" cols="30" rows="10" placeholder="Enter description here"></textarea>
+			<textarea id="description" name="description" cols="60" rows="2" placeholder="Enter description here"></textarea>
 			<input type="submit" value="create forum" class="btn btn-info">
 		</form>
 		<table class="table table-hover">

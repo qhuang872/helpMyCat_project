@@ -32,8 +32,8 @@
 				{% for thread in allThread %}
 				<tr class="active">
 					<td><a href="{%url 'forum:showThread' thread=thread.thread%}">{{thread.thread}}</a></td>
-					<td></td>
-					<td></td>
+					<td>{{thread.post_set.last.writer.username}} wrote:<br>{{thread.post_set.last.post}} <br>at:  {{thread.post_set.last.created_at}}</td>
+					<td>{{thread.post_set.all|length}}</td>
 					<td></td>
 				</tr>
 				{% endfor %}
