@@ -46,51 +46,37 @@ nav a:last-child{
 .breadcrumb #firstImage{
 	margin-left:7%;
 }
-h2{
+h3{
 	margin-left:10%;
 	color:white;
-	font-weight:bolder;
+	display:inline;
+	font-weight:bold;
 }
-h2, button{
-	display:inline-block;
+h3, button{
 	vertical-align:top;
 }
 button{
-	margin-top:1%;
 	position:absolute;
 	right:10%;
-	width:8%;
 }
-.table-hover{
-	width:80%;
-	margin-left:10%;	
+.table{
 	margin-top:1%;
-}
-.table-hover tr{
-	height:50px;	
-}
-.table-hover tr:hover td,.table-hover tr:hover a{
-	color:#54546B;
-}
-.table-hover td{
-	font-size:15px;
+	width:80%;
+	margin-left:10%;
 	color:white;
+	font-size:16px;
+}
+.table td:first-child{
+	text-align:center;
+	color:khaki;
+}
+span{
+	font-size:12px;
 }
 form{
-	margin-left:25%;
-	display:none;
-}
-form #threadTitle, form #post{
-	vertical-align:top;
-	border-radius:4px;
-}
-#threadTitle{
-	width:25%;
+	margin-left:20%;
+	margin-top:1%;
 }
 .btn-danger{
 	vertical-align:bottom;
-}
-.thread a{
-	text-decoration:none;
-	color:white;
 }

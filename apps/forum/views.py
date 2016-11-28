@@ -5,7 +5,22 @@ from ..loginRegister.models import User
 # Create your views here.
 def index(request):
     allForum = Forum.objects.all()
-    context={"all":allForum}
+    health = Forum.objects.get(forum="Cat Health")
+    nutrition = Forum.objects.get(forum="Cat Nutrition")
+    behavior = Forum.objects.get(forum="Cat Behavior")
+    care = Forum.objects.get(forum="Cat Care & Grooming")
+    new = Forum.objects.get(forum="New Cat")
+    pregnant = Forum.objects.get(forum="Pregnant Cats and Kitten Care")
+    dog = Forum.objects.get(forum="Cats and Dogs")
+    context={"allForum":allForum,
+            "health":health,
+            "nutrition":nutrition,
+            "behavior":behavior,
+            "care":care,
+            "new":new,
+            "pregnant":pregnant,
+            "dog":dog,
+            }
     return render(request,"forum/index.html",context)
 
 def logout(request):

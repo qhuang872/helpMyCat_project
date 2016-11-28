@@ -6,42 +6,41 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	{%load staticfiles%}
 	<link rel="stylesheet" href="{%static 'forum/stylesheets/bootstrap.min.css'%}" media="all">
-	<link rel="stylesheet" href="{%static 'forum/stylesheets/style2.css'%}" media="all">
+	<link rel="stylesheet" href="{%static 'forum/stylesheets/thread.css'%}" media="all">
 	<script type="text/javascript">
 		$(document).ready(function(){
 			var form = $("form");
 			$("button").click(function(){
-				form.show();
+				form.toggle();
 			})
 		})
 	</script>
 </head>
 <body>
-	<div class="container-fluid">
-		<header>
-			<img src="{% static 'forum/pictures/catLogo.png'%}" alt="cat logo">
-			<h2>Help My Cats</h2>
-			<a href="{% url 'forum:logout' %}">Log out</a>
-		</header>
-		<h3>{{currentThread.thread}}</h3>
-		<button class="btn btn-primary">Post</button>
-		<form action="{%url 'forum:newPost'%}" method="post">
-			{%csrf_token%}
-			<textarea id="post" type="text" name="post" placeholder="Your post"></textarea>
-
-			<input type="hidden" name="currentThread" value="{{currentThread.thread}}">
-			<input type="submit" value="Post it" class="btn btn-info">
-		</form>
-		<a href="{%url 'forum:forum' forumName=request.session.forum%}">back to forum page</a>
-		{% if allPost %}
+	<header>
+		<nav><a href="{%url 'forum:index'%}">Home</a><a href="">Cats in Need</a><a href="{%url 'forum:logout'%}">Log out</a></nav>
+		<ul class="breadcrumb">
+			<li><img src="{%static 'forum/pictures/home.png'%}" alt="home" id="firstImage"><a href="{%url 'forum:index'%}">Home</a></li>
+			<li><a href="{%url 'forum:forum' forumName=request.session.forum%}">Forum</a></li>
+			<li class="active">Thread</li>
+		</ul>
+	</header>
+	<h3 id="threadTitle">{{currentThread.thread}}</h3>
+	<button class="btn btn-info">Reply</button>
+	<form action="{%url 'forum:newPost'%}" method="post">
+		{%csrf_token%}
+		<textarea id="reply" name="post" cols="60" rows="3" placeholder="Your reply ..."></textarea>
+		<input type="hidden" name="currentThread" value="{{currentThread.thread}}">
+		<input type="submit" value="Submit" class="btn btn-danger">
+	</form>
+	<table class="table" id="post">
 		{% for post in allPost %}
-		<div class="post">
-			<p>{{post.created_at}} <span id="counter">post #{{forloop.counter}}</span></p>
-			<h4><span>{{post.writer.username}}</span> said:</h4>
-			<p class="content">{{post.post}}</p>
-		</div><br>
+			<tr>
+				<td>{{post.writer.username}}</td>
+				<td><span>{{post.created_at}}</span><br>{{post.post|linebreaksbr}}</td>
+			</tr>
 		{% endfor %}
-		{% endif %}
-	</div>
+	</table>
+	
 </body>
 </html>

@@ -5,42 +5,47 @@
 	<title>Meow's in Need</title>
 	{% load staticfiles %}
 	<link rel="stylesheet" href="{% static 'forum/stylesheets/bootstrap.min.css'%}" media="all">
+	<link rel="stylesheet" href="{% static 'forum/stylesheets/style2.css'%}" media="all">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			var form = $("form");
+			$("button").click(function(){
+				form.toggle();
+			})
+		})
+	</script>
 </head>
 <body>
-	<div class="container-fluid">
-		<header>
-			<img src="{% static 'forum/pictures/catLogo.png'%}" alt="cat logo">
-			<h2>Help My Cats</h2>
-			<a href="{% url 'forum:logout' %}">Log out</a>
-			<a href="{% url 'forum:index'%}">Return to Home Page</a>
-		</header>
-		<h4>Welcome to {{request.session.forum}} forum</h4>
-		<form action="{% url 'forum:newThread' %}">
-			<input type="submit" value="New Thread" class="btn btn-primary">
-		</form>
-		<table class="table table-hover">
-			<thead>
-				<tr class="success">
-					<th>Thread</th>
-					<th>Last Post</th>
-					<th>Replies</th>
-					<th>Views</th>
-				</tr>
-			</thead>
-			<tbody>
-				{% if allThread %}
-				{% for thread in allThread %}
-				<tr class="active">
-					<td><a href="{%url 'forum:showThread' thread=thread.thread%}">{{thread.thread}}</a></td>
-					<td>{{thread.post_set.last.writer.username}} wrote:<br>{{thread.post_set.last.post}} <br>at:  {{thread.post_set.last.created_at}}</td>
-					<td>{{thread.post_set.all|length}}</td>
-					<td></td>
-				</tr>
-				{% endfor %}
-				{% endif %}
-			</tbody>
-		</table>
-
-		</div>
+	<header>
+		<nav><a href="{%url 'forum:index'%}">Home</a><a href="">Cats in Need</a><a href="{%url 'forum:logout'%}">Log out</a></nav>
+		<ul class="breadcrumb">
+			<li><img src="{%static 'forum/pictures/home.png'%}" alt="home" id="firstImage"><a href="{%url 'forum:index'%}">Home</a></li>
+			<li class="active">Forum</li>
+		</ul>
+	</header>
+	<h2>{{request.session.forum}} Forum</h2>
+	<button class="btn btn-primary">New Topic</button>
+	<form action="{%url 'forum:createThread'%}" method="post">
+		{%csrf_token%}
+		<input id="threadTitle" type="text" name="thread" placeholder="Enter thread's name"><br>
+		<textarea id="post" name="post" cols="50" rows="3" placeholder="Enter first post for new thread"></textarea>
+		<input type="submit" value="Submit" class="btn btn-danger">
+	</form>
+	<table class="table table-hover">
+		<tbody>
+	{% if allThread %}
+	{% for thread in allThread %}
+		<tr class="thread">
+			<td><img src="{%static 'forum/pictures/note3.png'%}" alt="icon"> 
+				<a href="{%url 'forum:showThread' thread=thread.thread%}">{{thread.thread}}</a></td>
+			<td><img src="{%static 'forum/pictures/discussion.png'%}" alt="forum icon">
+				{{thread.post_set.all|length}}</td>
+			<td>{{thread.creator.username}}</td>
+		</tr>
+	{% endfor %}
+	{% endif %}
+		</tbody>
+	</table>
 </body>
 </html>

@@ -9,50 +9,55 @@
 	<link rel="stylesheet" href="{% static 'forum/stylesheets/style.css'%}" media="all">
 	<script>
 		$(document).ready(function(){
-			var form = $("form");
-			$("button").click(function(){
-				form.toggle();
-			})
 		})
 	</script>
 </head>
 <body>
-	<div class="container-fluid">
-		<header>
-			<img src="{% static 'forum/pictures/catLogo.png'%}" alt="cat logo">
-			<h3><span id="meow">Meows</span><span id="inNeed">inNeed</span></h3>
+	<header>
+		<img src="{%static 'forum/pictures/whitecat.jpg'%}" alt="whitecat" id="whitecat">
+		<h2>Welcome to<br> Meows in Need Forum</h2>
+		<nav><a href="">Home</a><a href="">Cats in Need</a><a href="">Log out</a></nav>
+		<div class="breadcrumb">
+			<img src="{%static 'forum/pictures/home.png'%}" alt="home"><a href="#">Forums</a>
+		</div>
+	</header>
+	<div id="main">
+		<div class="forum">
+			<img src="{%static 'forum/pictures/heart.png'%}" alt="heart">
+			<h3><a href="{%url 'forum:forum' forumName=health.forum%}">{{health.forum}}</a></h3>
+			<p>{{health.description}}</p>
+		</div>
+		<div class="forum">
+			<img src="{%static 'forum/pictures/food.png'%}" alt="food">
+			<h3><a href="{%url 'forum:forum' forumName=nutrition.forum%}">{{nutrition.forum}}</a></h3>
+			<p>{{nutrition.description}}</p>
+		</div>
+		<div class="forum">
+			<img src="{%static 'forum/pictures/behavior.png'%}" alt="behavior">
+			<h3><a href="{%url 'forum:forum' forumName=behavior.forum%}">{{behavior.forum}}</a></h3>
+			<p>{{behavior.description}}</p>
+		</div>
+		<div class="forum">
+			<img src="{%static 'forum/pictures/shower.png'%}" alt="shower">
+			<h3><a href="{%url 'forum:forum' forumName=care.forum%}">{{care.forum}}</a></h3>
+			<p>{{care.description}}</p>
+		</div>
+		<div class="forum">
+			<img src="{%static 'forum/pictures/newcat.png'%}" alt="newcat">
+			<h3><a href="{%url 'forum:forum' forumName=new.forum%}">{{new.forum}}</a></h3>
+			<p>{{new.description}}</p>
+		</div>
+		<div class="forum">
+			<img src="{%static 'forum/pictures/pregnant.png'%}" alt="pregnant cat">
+			<h3><a href="{%url 'forum:forum' forumName=pregnant.forum%}">Pregnant Cats</a></h3>
+			<p>{{pregnant.description}}</p>
+		</div>
+		<div class="forum">
+			<img src="{%static 'forum/pictures/dog.png'%}" alt="dog">
+			<h3><a href="{%url 'forum:forum' forumName=dog.forum%}">{{dog.forum}}</a></h3>
+			<p>{{dog.description}}</p>
+		</div>
 
-			<a href="{% url 'forum:logout' %}">Log out</a>
-		</header>
-		<button class="btn btn-success">New Forum/Hide</button>
-		<form action="{% url 'forum:newForum'%}" method="post">
-			{%csrf_token%}
-			<input id="forumTitle" type="text" name="forumTitle" placeholder="Enter forum name here">
-			<textarea id="description" name="description" cols="60" rows="2" placeholder="Enter description here"></textarea>
-			<input type="submit" value="create forum" class="btn btn-info">
-		</form>
-		<table class="table table-hover">
-			<thead>
-				<tr class="info">
-					<th>Forum</th>
-					<th>Last Post</th>
-					<th>Threads</th>
-					<th>Posts</th>
-				</tr>
-			</thead>
-			<tbody>
-				{% for forum in all %}
-				<tr class="active">
-					<td><a href="{% url 'forum:forum' forumName=forum.forum%}">{{forum.forum}}</a><br>
-						{{forum.description}}
-					</td>
-					<td></td>
-					<td>{{forum.thread_set.all|length}}</td>
-					<td></td>
-				</tr>
-				{% endfor %}
-			</tbody>
-		</table>
 	</div>
 </body>
 </html>

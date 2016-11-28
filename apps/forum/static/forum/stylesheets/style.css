@@ -1,45 +1,95 @@
 *{
-	padding:0px;
-	margin:0px;
+	padding:0;
+	margin:0;
 }
 body{
-	width:80%;
-	margin:0px auto;
+	height:100%;
+}
+header #whitecat{
+	min-width:100%;
+	height:20%;
 }
 header{
-	width:100%;
-	height:auto;
+	height:20%;
 	overflow:hidden;
 }
-	header img, header h3, header a{
-		display:inline-block;
-		vertical-align: top;
-	}
-	header h3,header a{
-		margin-top:90px;
-	}
-	#meow{
-		color:PeachPuff;
-	}
-	#inNeed{
-		color:PaleTurquoise;
-	}
-	header a{
-		margin-left:600px;
-	}
-.table-hover{
-	margin-top:20px;
+h2{
+	position:absolute;
+	bottom:20%;
+	color:white;
+	text-align:center;
+	font-family:sans-serif;
+	margin-left:8%;
 }
-form{
-	display:none;
+nav{
+	position:absolute;
+	top:0;
+	background-color:lightgrey;
+	width:100%;
+	opacity:0.2;
+	height:7%;
+	padding-top:0.5%;
 }
-#forumTitle{
-	width:280px;
+nav a{
+	font-size:20px;
+	margin-left:8%;
+	font-family:sans-serif;
+	color:navy;
 }
-input,textarea{
+nav a:last-child{
+	margin-left:55%;
+}
+.breadcrumb{
+	position:absolute;
+	top:7%;
+	background-color:lightgrey;
+	width:100%;
+	opacity:0.2;
+	height:7%;
+	padding-top:0.5%;
+	border:0.5px solid grey;
+}
+.breadcrumb a{
+	font-size:18px;
+	margin-left:0.5%;
+	color:darkblue;
+}
+.breadcrumb a, .breadcrumb img{
+	vertical-align:top;
+}
+.breadcrumb img{
+	margin-left:7%;
+}
+a{
+	text-decoration:none;
+}
+a:hover{
+	text-decoration:none;
+	color:white;
+}
+#main{
+	width:100%;
+	height:30%;
+	padding-left:0;
+	background-color:#EEDCDA;
+}
+.forum{
+	height:12%;
+	width:27%;
+	padding:0.2%;
+	display:inline-block;
+	vertical-align:top;
+	margin-left:5%;
+	margin-top:2%;
+}
+.forum:hover{
+	background-color:#C3BBB0;
+}
+.forum img, .forum h3{
 	display:inline-block;
 	vertical-align:top;
 }
-.btn-info{
-	margin-top:20px;
+.forum h3{
+	margin-left:0.5%;
 }
+
