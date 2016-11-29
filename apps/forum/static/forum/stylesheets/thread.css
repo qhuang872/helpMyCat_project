@@ -74,6 +74,7 @@ span{
 	font-size:12px;
 }
 form{
+	display:none;
 	margin-left:20%;
 	margin-top:1%;
 }

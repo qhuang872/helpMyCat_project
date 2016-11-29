@@ -10,7 +10,7 @@ def index(request):
     behavior = Forum.objects.get(forum="Cat Behavior")
     care = Forum.objects.get(forum="Cat Care & Grooming")
     new = Forum.objects.get(forum="New Cat")
-    pregnant = Forum.objects.get(forum="Pregnant Cats and Kitten Care")
+    pregnant = Forum.objects.get(forum="Pregnant Cats")
     dog = Forum.objects.get(forum="Cats and Dogs")
     context={"allForum":allForum,
             "health":health,
@@ -56,7 +56,7 @@ def createThread(request):
         return redirect(reverse("forum:forum",kwargs={"forumName":request.session["forum"]})) 
             
 def showThread(request,thread):
-    thread = Thread.objects.get(thread=thread)
+    thread=Thread.objects.get(thread=thread)
     allPost = thread.post_set.all()
     context = {"allPost":allPost,"currentThread":thread}
     return render(request,"forum/showThread.html",context)
